@@ -1,6 +1,6 @@
-UnitTestList := ZigZagTest
+UnitTestList := ZigZagTest BadNeighborsTest
 
-all: ZigZagTest
+all: BadNeighborsTest
 
 
 JUNIT_MAIN = org.junit.runner.JUnitCore
@@ -10,6 +10,9 @@ JUNIT_MAIN = org.junit.runner.JUnitCore
 
 ZigZagTest: ZigZag.class ZigZagTest.class
 	java $(JUNIT_MAIN) ZigZagTest
+
+BadNeighborsTest: BadNeighbors.class BadNeighborsTest.class
+	java $(JUNIT_MAIN) BadNeighborsTest
 
 clean:
 	rm -rf *.class
