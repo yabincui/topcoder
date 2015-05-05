@@ -1,6 +1,7 @@
-UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest ChessMetricTest
+UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest ChessMetricTest \
+								JewelryTest
 
-all: ChessMetricTest
+all: JewelryTest
 
 
 JUNIT_MAIN = org.junit.runner.JUnitCore
@@ -8,20 +9,8 @@ JUNIT_MAIN = org.junit.runner.JUnitCore
 %.class : %.java
 	javac $<
 
-ZigZagTest: ZigZag.class ZigZagTest.class
-	java $(JUNIT_MAIN) ZigZagTest
-
-BadNeighborsTest: BadNeighbors.class BadNeighborsTest.class
-	java $(JUNIT_MAIN) BadNeighborsTest
-
-FlowerGardenTest: FlowerGarden.class FlowerGardenTest.class
-	java $(JUNIT_MAIN) FlowerGardenTest
-
-AvoidRoadsTest: AvoidRoads.class AvoidRoadsTest.class
-	java $(JUNIT_MAIN) AvoidRoadsTest
-
-ChessMetricTest: ChessMetric.class ChessMetricTest.class
-	java $(JUNIT_MAIN) ChessMetricTest
+%Test: %.class %Test.class
+	java $(JUNIT_MAIN) $@
 
 clean:
 	rm -rf *.class
