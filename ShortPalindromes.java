@@ -1,3 +1,4 @@
+// http://community.topcoder.com/stat?c=problem_statement&pm=1861&rd=4630
 public class ShortPalindromes {
   public String shortest(String base) {
     int n = base.length();

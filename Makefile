@@ -1,7 +1,7 @@
 UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest ChessMetricTest \
-								JewelryTest StripePainterTest QuickSumsTest ShortPalindromesTest
+								JewelryTest StripePainterTest QuickSumsTest ShortPalindromesTest StarAdventureTest \
 
-all: ShortPalindromesTest
+all: StarAdventureTest
 
 
 JUNIT_MAIN = org.junit.runner.JUnitCore
