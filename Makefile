@@ -1,8 +1,8 @@
 UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest ChessMetricTest \
 								JewelryTest StripePainterTest QuickSumsTest ShortPalindromesTest StarAdventureTest \
-								MiniPaintTest \
+								MiniPaintTest FibonacciDiv2Test SRMCardsTest ShorterSuperSumTest ThePalindromeTest \
 
-all: MiniPaintTest
+all: ThePalindromeTest
 
 
 JUNIT_MAIN = org.junit.runner.JUnitCore
