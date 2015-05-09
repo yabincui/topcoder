@@ -1,9 +1,10 @@
 UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest ChessMetricTest \
 								JewelryTest StripePainterTest QuickSumsTest ShortPalindromesTest StarAdventureTest \
 								MiniPaintTest FibonacciDiv2Test SRMCardsTest ShorterSuperSumTest ThePalindromeTest \
-								MutaliskEasyTest \
+								MutaliskEasyTest RandomPancakeStackDiv2Test NumbersChallengeTest ChooseTheBestOneTest \
+								EmoticonsDiv2Test PalindromicSubstringsDiv2Test \
 
-all: MutaliskEasyTest
+all: PalindromicSubstringsDiv2Test
 
 
 JUNIT_MAIN = org.junit.runner.JUnitCore
