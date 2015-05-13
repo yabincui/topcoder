@@ -6,7 +6,8 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
 								MutaliskEasyTest RandomPancakeStackDiv2Test NumbersChallengeTest ChooseTheBestOneTest \
 								EmoticonsDiv2Test PalindromicSubstringsDiv2Test ColorfulRoadTest \
 								AstronomicalRecordsEasyTest TrafficCongestionDivTwoTest StampTest \
-								CuttingBitStringTest PillarsDivTwoTest StrIIRecTest \
+								CuttingBitStringTest PillarsDivTwoTest StrIIRecTest EvenRouteTest \
+								EllysCheckersTest NoRepeatPlaylistTest P8XGraphBuilderTest \
 
 all: $(call last,$(UnitTestList))
 
