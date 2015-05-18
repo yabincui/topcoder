@@ -11,6 +11,7 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
 								RouteIntersectionTest PrimeSoccerTest SentenceDecompositionTest \
 								ChangingSoundsTest HandsShakingTest NumberofFiboCallsTest ProblemsToSolveTest \
 								RGBStreetTest MatchNumbersEasyTest NineEasyTest SingingEasyTest BuildingTowersTest \
+								TheKingsTreeTest \
 
 all: $(call last,$(UnitTestList))
 
