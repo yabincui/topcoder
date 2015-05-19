@@ -10,8 +10,7 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
 								EllysCheckersTest NoRepeatPlaylistTest P8XGraphBuilderTest FoxPlayingGameTest \
 								RouteIntersectionTest PrimeSoccerTest SentenceDecompositionTest \
 								ChangingSoundsTest HandsShakingTest NumberofFiboCallsTest ProblemsToSolveTest \
-								RGBStreetTest MatchNumbersEasyTest NineEasyTest SingingEasyTest BuildingTowersTest \
-								TheKingsTreeTest \
+								RGBStreetTest MatchNumbersEasyTest NineEasyTest BoardFoldingDiv2Test \
 
 all: $(call last,$(UnitTestList))
 
