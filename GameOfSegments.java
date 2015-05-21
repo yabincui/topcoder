@@ -1,28 +1,23 @@
 // http://apps.topcoder.com/wiki/display/tc/SRM+624
+// http://web.mit.edu/sp.268/www/nim.pdf
 public class GameOfSegments {
-  public long enumerate(int N) {
-    // Have equal number doesn't matter the result.
-    // So all state are how many ways to enumerate a sum <= 1000, and no repeat value.
-    long[][] dp = new long[N + 1][N + 1];
-    dp[0][0] = 1;
-    for (int i = 1; i <= N; ++i) {
-      dp[i][0] = 1;
-      for (int j = 1; j <= N; ++j) {
-        dp[i][j] = dp[i - 1][j];
-      }
-      for (int j = i; j <= N; ++j) {
-        dp[i][j] += dp[i - 1][j - i];
-      }
-    }
-    long ways = 0;
-    for (int i = 1; i <= N; ++i) {
-      ways += dp[N][i];
-    }
-    System.out.printf("ways to enumerate(%d) is %d\n", N, ways);
-    return ways;
-  }
-
   public int winner(int N) {
-    return N;
+    int[] g = new int[N + 1];
+    g[0] = 0;
+    g[1] = 0;
+    for (int n = 2; n <= N; ++n) {
+      boolean[] hit = new boolean[N + 1];
+      for (int i = 0; i <= n - 2 - i; ++i) {
+        int temp = g[i] ^ g[n - 2 - i];
+        hit[temp] = true;
+      }
+      for (int i = 0; i <= N; ++i) {
+        if (hit[i] == false) {
+          g[n] = i;
+          break;
+        }
+      }
+    }
+    return g[N] == 0 ? 2 : 1;
   }
 }
