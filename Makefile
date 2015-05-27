@@ -14,6 +14,7 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
                 GoodSubsetTest TaroCoinsTest BubbleSortWithReversalsTest GameOfSegmentsTest \
                 RandomGraphTest MovingRooksDiv2Test TwoLLogoTest MergeStringsTest \
                 TaroCardsTest MiningGoldEasyTest VocaloidsAndSongsTest CombinationLockDiv2Test \
+                AlienAndSetDiv2Test \
 
 all: $(call last,$(UnitTestList))
 
