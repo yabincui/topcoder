@@ -23,7 +23,7 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
                 FencingPenguinsEasyTest SpellCardsEasyTest RandomOptionTest FoxAndTouristFamiliesTest \
                 FoxAndMountainTest LeftRightDigitsGameTest MuddyRoad2Test TheBrickTowerHardDivTwoTest \
                 SafeRemovalTest ColorfulCupcakesDivTwoTest OrderOfTheHatsTest KingdomAndPasswordTest \
-                RelativelyPrimeSubsetTest AliceBobShuffleTest \
+                RelativelyPrimeSubsetTest AliceBobShuffleTest FoxAndSortingTest \
 
 all: $(call last,$(UnitTestList))
 
