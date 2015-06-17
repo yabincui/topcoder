@@ -24,7 +24,7 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
                 FoxAndMountainTest LeftRightDigitsGameTest MuddyRoad2Test TheBrickTowerHardDivTwoTest \
                 SafeRemovalTest ColorfulCupcakesDivTwoTest OrderOfTheHatsTest KingdomAndPasswordTest \
                 RelativelyPrimeSubsetTest AliceBobShuffleTest FoxAndSortingTest \
-                EllysFiveFriendsTest \
+                EllysFiveFriendsTest MagicalGirlTest \
 
 all: $(call last,$(UnitTestList))
 
