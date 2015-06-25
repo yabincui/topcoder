@@ -26,7 +26,7 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
                 RelativelyPrimeSubsetTest AliceBobShuffleTest FoxAndSortingTest \
                 EllysFiveFriendsTest MagicalGirlTest DengklekPaintingSquaresTest MagicNamingTest \
                 SmallBricks31Test SRMSystemTestPhaseTest CoinReversingTest CuttingGrassTest \
-                FiveHandredElevenTest \
+                FiveHandredElevenTest YetAnotherORProblem2Test \
 
 all: $(call last,$(UnitTestList))
 
