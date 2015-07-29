@@ -29,7 +29,7 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
                 FiveHandredElevenTest YetAnotherORProblem2Test TheTicketsDivTwoTest \
                 TheCowDivTwoTest FoxAverageSequenceTest MakeSquareTest AlternatingLaneTest \
                 SolitaireChessTest GrafixMaskTest MarketingTest CircuitsTest PathFindingTest \
-                EscapeTest \
+                EscapeTest KiloManXTest \
 
 all: $(call last,$(UnitTestList))
 
