@@ -12,6 +12,8 @@ GameOfSegments, SRM 624
 CombinationLockDiv2, SRM 607
 RandomOption, SRM 562
 FiveHandredEleven, SRM 511
+SolitaireChess, SRM 498
+(creative way of using single source shortest path in bi-matching)
 
 Interesting problems:
 EllysCoprimesDiv2, SRM 577

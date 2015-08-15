@@ -55,45 +55,7 @@ public class SolitaireChess {
       return -1;
     }
 
-    // source[i] select target[selects[i]].
-    int[] selects = new int[sources.length];
-    // Init selection.
-    for (int i = 0; i < targets.length; ++i) {
-      selects[i] = i;
-    }
-
-    int minSteps = 0;
-    for (int i = 0; i < sources.length; ++i) {
-      int from = sources[i];
-      int to = targets[selects[i]];
-      minSteps += dist[from][to];
-    }
-    while (true) {
-      boolean findSwap = false;
-      // try swap.
-      for (int i = 0; i < sources.length; ++i) {
-        for (int j = i + 1; j < sources.length; ++j) {
-          int from1 = sources[i];
-          int to1 = targets[selects[i]];
-          int from2 = sources[j];
-          int to2 = targets[selects[j]];
-          int originSteps = dist[from1][to1] + dist[from2][to2];
-          int newSteps = dist[from1][to2] + dist[from2][to1];
-          if (newSteps < originSteps) {
-            findSwap = true;
-            int temp = selects[i];
-            selects[i] = selects[j];
-            selects[j] = temp;
-            minSteps -= originSteps - newSteps;
-            break;
-          }
-        }
-      }
-      
-      if (!findSwap) {
-        break;
-      }
-    }
+    int minSteps = findMinStepByMaxFlow2(sources, targets, dist);
 
     int[] selectArray = new int[sources.length];
     boolean[] choosen = new boolean[sources.length];
@@ -106,6 +68,7 @@ public class SolitaireChess {
     return result;
   }
 
+  // Method to verify result.
   int permute(int k, int[] sources, int[] targets, int[] select, boolean[] choosen, int[][] dist) {
     if (k == sources.length) {
       int steps = 0;
@@ -268,6 +231,236 @@ public class SolitaireChess {
     int[][] result = new int[2][];
     result[0] = toArray(array1);
     result[1] = toArray(array2);
+    return result;
+  }
+  
+  class Edge {
+    int width;
+    Node toNode;
+    
+    Edge(int width, Node toNode) {
+      this.width = width;
+      this.toNode = toNode;
+    }
+  }
+  
+  class Node {
+    ArrayList<Edge> neighbors = new ArrayList<Edge>();
+  
+    Edge findEdge(Node toNode) {
+      for (Edge edge : neighbors) {
+        if (edge.toNode == toNode) {
+          return edge;
+        }
+      }
+      return null;
+    }
+    
+    void addEdge(int width, Node toNode) {
+      Edge edge = findEdge(toNode);
+      if (edge != null) {
+        edge.width += width;
+      } else {
+        neighbors.add(new Edge(width, toNode));
+      }
+    }
+    
+    void subEdge(int width, Node toNode) {
+      Edge edge = findEdge(toNode);
+      if (edge != null) {
+        edge.width -= width;
+        if (edge.width == 0) {
+          neighbors.remove(edge);
+        }
+      }
+    }
+  }
+  
+  class Connect {
+    int width;
+    int dist;
+    
+    Connect(int width, int dist) {
+      this.width = width;
+      this.dist = dist;
+    }
+  }
+  
+  // Change the way to find path. Don't use bfs/dfs, use single source shortest
+  // path with negative edge.
+  int findMinStepByMaxFlow2(int[] A, int[] B, int[][] boardDist) {
+    int n = A.length;
+    int size = n * 2 + 2;
+    Connect[][] m = new Connect[size][size];
+    for (int i = 0; i < size; ++i) {
+      for (int j = 0; j < size; ++j) {
+        m[i][j] = new Connect(0, 0);
+      }
+    }
+    for (int i = 0; i < n; ++i) {
+      for (int j = n; j < 2 * n; ++j) {
+        m[i][j] = new Connect(1, boardDist[A[i]][B[j - n]]);
+        m[j][i] = new Connect(0, -boardDist[A[i]][B[j - n]]);
+      }
+    }
+    int source = n * 2;
+    int sink = n * 2 + 1;
+    for (int i = 0; i < n; ++i) {
+      m[source][i] = new Connect(1, 0);
+    }
+    for (int j = n; j < 2 * n; ++j) {
+      m[j][sink] = new Connect(1, 0);
+    }
+    
+    int lastWidth = n;
+    int distSum = 0;
+    while (lastWidth > 0) {
+      int[] prev = new int[size];
+      int[] dist = new int[size];
+      for (int i = 0; i < size; ++i) {
+        dist[i] = -1;
+      }
+      dist[source] = 0;
+      PriorityQueue<Integer> queue = new PriorityQueue<Integer>();
+      queue.add((0 << 16) | source);
+      // We may have negative dist, so loop until the queue becomes empty.
+      while (!queue.isEmpty()) {
+        int value = queue.poll();
+        int curDist = value >> 16;
+        int curNode = value & ((1 << 16) - 1);
+        if (curDist > dist[curNode]) {
+          continue;
+        }
+        for (int nextNode = 0; nextNode < size; ++nextNode) {
+          if (m[curNode][nextNode].width > 0 && (
+              dist[nextNode] == -1 || dist[nextNode] > dist[curNode] + m[curNode][nextNode].dist)) {
+            dist[nextNode] = dist[curNode] + m[curNode][nextNode].dist;
+            prev[nextNode] = curNode;
+            queue.add((dist[nextNode] << 16) | nextNode);
+          }
+        }
+      }
+      if (dist[sink] == -1) {
+        break;
+      }
+      lastWidth--;
+      for (int cur = sink; cur != source; cur = prev[cur]) {
+        int curNode = cur;
+        int prevNode = prev[cur];
+        m[prevNode][curNode].width--;
+        m[curNode][prevNode].width++;
+      }
+      distSum += dist[sink];
+    }
+    return distSum;
+  }
+  
+  // Wrong answer, maximum flow using bfs to search path is not enough.
+  int findMinStepByMaxFlow(int[] A, int[] B, int[][] dist) {
+    Node[] from = new Node[A.length];
+    for (int i = 0; i < from.length; ++i) {
+      from[i] = new Node();
+    }
+    Node[] to = new Node[B.length];
+    for (int i = 0; i < to.length; ++i) {
+      to[i] = new Node();
+    }
+    Node source = new Node();
+    Node sink = new Node();
+    /*
+    int maxDist = 0;
+    for (int i = 0; i < A.length; ++i) {
+      for (int j = 0; j < B.length; ++j) {
+        int d = dist[A[i]][B[j]];
+        maxDist = Math.max(maxDist, d);
+      }
+    }
+    */
+    int standardWidth = 100;
+    System.out.printf("standardWidth = %d\n", standardWidth);
+    for (int i = 0; i < A.length; ++i) {
+      source.addEdge(standardWidth * 2, from[i]);
+    }
+    for (int i = 0; i < A.length; ++i) {
+      for (int j = 0; j < B.length; ++j) {
+        System.out.printf("width[i][j] = %d\n", standardWidth * 2 - dist[A[i]][B[j]]);
+        from[i].addEdge(standardWidth * 2 - dist[A[i]][B[j]], to[j]);
+      }
+    }
+    for (int j = 0; j < B.length; ++j) {
+      to[j].addEdge(standardWidth * 2, sink);
+    }
+    int maxFlow = findMaxFlow(source, sink, standardWidth);
+    int minStep = (2 * standardWidth * from.length - maxFlow);
+    System.out.printf("maxFlow = %d, from.length = %d, standardWidth = %d, minStep = %d\n",
+        maxFlow, from.length, standardWidth, minStep);
+    for (int i = 0; i < A.length; ++i) {
+      for (int j = 0; j < B.length; ++j) {
+        Edge edge = to[j].findEdge(from[i]);
+        if (edge != null) {
+          System.out.printf("edge from[%d] -> to[%d], width %d, dist %d, dist[%d][%d] = %d\n",
+              i, j, edge.width, 2 * standardWidth - edge.width, i, j, dist[A[i]][B[j]]);
+        }
+      }
+    }
+    
+    return minStep;
+  }
+  
+  class PathSegment {
+    PathSegment prev;
+    int width;
+    Node cur;
+    
+    PathSegment(PathSegment prev, int width, Node cur) {
+      this.prev = prev;
+      this.width = width;
+      this.cur = cur;
+    }
+  }
+  
+  int findMaxFlow(Node source, Node sink, int standardWidth) {
+    int result = 0;
+    while (true) {
+      Queue<PathSegment> queue = new ArrayDeque<PathSegment>();
+      HashSet<Node> hitSet = new HashSet<Node>();
+      queue.add(new PathSegment(null, 0, source));
+      hitSet.add(source);
+      boolean found = false;
+      PathSegment foundSegment = null;
+      while (!queue.isEmpty()) {
+        PathSegment seg = queue.poll();
+        for (Edge edge : seg.cur.neighbors) {
+          if (edge.toNode == sink) {
+            foundSegment = new PathSegment(seg, edge.width, sink);
+            found = true;
+            break;
+          }
+          if (!hitSet.contains(edge.toNode)) {
+            hitSet.add(edge.toNode);
+            queue.add(new PathSegment(seg, edge.width, edge.toNode));
+          }
+        }
+        if (found) {
+          break;
+        }
+      }
+      if (!found) {
+        break;
+      }
+      int minWidth = Integer.MAX_VALUE;
+      for (PathSegment seg = foundSegment; seg.prev != null; seg = seg.prev) {
+        minWidth = Math.min(minWidth, seg.width);
+      }
+      System.out.printf("minWidth = %d\n", minWidth);
+      result += minWidth;
+      for (PathSegment seg = foundSegment; seg.prev != null; seg = seg.prev) {
+        Node from = seg.prev.cur;
+        Node to = seg.cur;
+        from.subEdge(minWidth, to);
+        to.addEdge(minWidth, from);
+      }
+    }
     return result;
   }
 }
