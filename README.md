@@ -14,6 +14,7 @@ RandomOption, SRM 562
 FiveHandredEleven, SRM 511
 SolitaireChess, SRM 498
 (creative way of using single source shortest path in bi-matching)
+RectangularIsland, SRM 472
 
 Interesting problems:
 EllysCoprimesDiv2, SRM 577
