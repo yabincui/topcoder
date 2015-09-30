@@ -35,7 +35,8 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
                 SubAnagramsTest SquaresCoveringTest RectangularIslandTest GiftsTest WeirdTimesTest \
                 ColorfulMazeTwoTest NameInputTest ParkAmusementTest DonutsOnTheGridTest \
                 NumbersAndMatchesTest HexagonalBattlefieldEasyTest TheCardLineDivTwoTest \
-                CollectingTokensTest ShopPositionsTest RotatingTrianglesTest Polygons2Test \
+                CollectingTokensTest ShopPositionsTest RotatingTrianglesTest Polygons2Test EqualTowersTest \
+                WickedTeacherTest \
 
 all: $(call last,$(UnitTestList))
 
