@@ -39,7 +39,8 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
                 WickedTeacherTest PalindromeFactoryTest BirdsCountingTest ImageTradersTest TheDictionaryTest \
                 TheEasyChaseTest BarracksEasyTest DancingCouplesTest InfiniteSequenceTest \
                 ClosestRegexTest InfiniteSoupTest MarblesInABagTest CheapestRouteTest PolygonColorsTest \
-                GetToTheTopTest TheSumOfLuckyNumbersTest RandomSortTest CollectingMarblesTest \
+                GetToTheTopTest TheSumOfLuckyNumbersTest RandomSortTest CollectingMarblesTest TriviaGameTest \
+                PowerAdaptersTest MarbleCollectionGameTest \
 
 all: $(call last,$(UnitTestList))
 
