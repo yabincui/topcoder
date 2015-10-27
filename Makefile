@@ -1,5 +1,7 @@
 include gmsl-1.1.7/gmsl
 
+# TODO: support writing c++ code, and python code.
+
 UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest ChessMetricTest \
 								JewelryTest StripePainterTest QuickSumsTest ShortPalindromesTest StarAdventureTest \
 								MiniPaintTest FibonacciDiv2Test SRMCardsTest ShorterSuperSumTest ThePalindromeTest \
@@ -41,6 +43,7 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
                 ClosestRegexTest InfiniteSoupTest MarblesInABagTest CheapestRouteTest PolygonColorsTest \
                 GetToTheTopTest TheSumOfLuckyNumbersTest RandomSortTest CollectingMarblesTest TriviaGameTest \
                 PowerAdaptersTest MarbleCollectionGameTest SetOfPatternsTest MarblesRegroupingHardTest \
+                LittleTreeTest PowerGameTest CharmingTicketsEasyTest \
 
 all: $(call last,$(UnitTestList))
 
@@ -54,6 +57,9 @@ JUNIT_MAIN = org.junit.runner.JUnitCore
 
 %Test: %.class %Test.class
 	java $(JUNIT_MAIN) $@
+
+%Test: %Test.py
+	python $<
 
 clean:
 	rm -rf *.class
