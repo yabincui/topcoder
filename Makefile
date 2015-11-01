@@ -44,7 +44,7 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
                 GetToTheTopTest TheSumOfLuckyNumbersTest RandomSortTest CollectingMarblesTest TriviaGameTest \
                 PowerAdaptersTest MarbleCollectionGameTest SetOfPatternsTest MarblesRegroupingHardTest \
                 LittleTreeTest PowerGameTest CharmingTicketsEasyTest JohnnysPhoneTest IsoscelesTriangulationsTest \
-                PowerPlantsTest CrazyComponentsTest \
+                PowerPlantsTest CrazyComponentsTest FixedSizeSumsTest \
 
 all: $(call last,$(UnitTestList))
 
