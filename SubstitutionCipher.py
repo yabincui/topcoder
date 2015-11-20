@@ -9,12 +9,12 @@ class SubstitutionCipher:
 		for i in range(len(a)):
 			if not map.has_key(a[i]):
 				map[a[i]] = b[i]
-				delete from_dict[a[i]]
-				delete to_dict[b[i]]
+				del from_dict[a[i]]
+				del to_dict[b[i]]
 		if len(from_dict.keys()) == 1:
 			map[from_dict.keys()[0]] = to_dict.keys()[0]
 		reverse_map = {}
-		for (k,v) in map:
+		for (k,v) in map.items():
 			reverse_map[v] = k
 		x = ''
 		for v in y:
