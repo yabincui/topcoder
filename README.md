@@ -16,6 +16,7 @@ SolitaireChess, SRM 498
 (creative way of using single source shortest path in bi-matching)
 RectangularIsland, SRM 472
 EqualTowers, SRM 442
+CardCosts, SRM 245
 
 Interesting problems:
 EllysCoprimesDiv2, SRM 577
