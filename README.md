@@ -2,9 +2,10 @@ Code Archive of topcoder Problem Archive, which can be found in http://community
 
 Done:
 Dynamic Programming, DIV II, Level One, Level Two.
+Dynamic Programming, DIV II, Level Three.
 
 Working on:
-Dynamic Programming, DIV II, Level Three.
+Dynamic Programming, DIV I, Level Three.
 
 
 Hard problems:
