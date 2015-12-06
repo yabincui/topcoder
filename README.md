@@ -5,7 +5,7 @@ Dynamic Programming, DIV II, Level One, Level Two.
 Dynamic Programming, DIV II, Level Three.
 
 Working on:
-Dynamic Programming, DIV I, Level Three.
+Dynamic Programming, DIV I.
 
 
 Hard problems:
