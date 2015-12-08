@@ -23,3 +23,6 @@ Interesting problems:
 EllysCoprimesDiv2, SRM 577
 MuddyRoad2, SRM 555
 FoxAndSorting, SRM 535
+
+Hard problems to be solved:
+ClassicProblem, SRM 674, DIV I.
