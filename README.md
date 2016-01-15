@@ -18,6 +18,7 @@ SolitaireChess, SRM 498
 RectangularIsland, SRM 472
 EqualTowers, SRM 442
 CardCosts, SRM 245
+RevengeOfTheSith, SRM 678
 
 Interesting problems:
 EllysCoprimesDiv2, SRM 577
