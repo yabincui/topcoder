@@ -1,6 +1,4 @@
-include gmsl-1.1.7/gmsl
-
-# TODO: support writing c++ code, and python code.
+# TODO: support writing c++ code.
 
 UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest ChessMetricTest \
 								JewelryTest StripePainterTest QuickSumsTest ShortPalindromesTest StarAdventureTest \
@@ -46,7 +44,7 @@ UnitTestList := ZigZagTest BadNeighborsTest FlowerGardenTest AvoidRoadsTest Ches
                 LittleTreeTest PowerGameTest CharmingTicketsEasyTest JohnnysPhoneTest IsoscelesTriangulationsTest \
                 PowerPlantsTest CrazyComponentsTest FixedSizeSumsTest BearDartsTest VampireTreeDiv2Test \
 
-all: $(call last,$(UnitTestList))
+all: $(lastword $(UnitTestList))
 
 test_all: $(UnitTestList)
 
