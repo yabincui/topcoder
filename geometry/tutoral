@@ -1,0 +1,131 @@
+vector (x, y)
+vector addition (x1+x2, y1+y2)
+
+dot product
+x1*x2 + y1*y2 = A dot B = |A|*|B|cos(theta)
+if y2 = 0, x1 / sqrt(x1^2 +y1^2) = cos(theta), x1*x2 = x1*x2
+
+
+cross product
+A*B = x1*y2 - y1*x2 = |A|*|B|*sin(theta)
+If A is less than 180 clockwise to B, sin(theta) is negative.
+If A is (0, 1), B is (1, 0), 0 * 0 - 1 * 1 = -1.
+AB*AC/2 is the area formed by A,B,C
+
+line point distance
+the distance from a point to a line. AB*AC/|AB|
+the distance from a point to a segment:
+To test if the nearest point on line AB is beyond B, we can take AB dot BC = |AB|*|BC|*cos(theta),
+if the value is >0, the angle between AB and BC is between -90 and 90, then the nearest point on
+segment AB will be B. Similarly, if BA dot AC is positive, the nearest point is A. otherwise, it
+is someplace along the segment.
+
+polygon area
+use AB*AC for each node on the polygon.
+fr (int i = 1; i+1 < N; ++i) {
+  area += cross(p[0]p[i], p[0]p[i+1])
+}
+return abs(area/2.0);
+
+Line-line intersection
+each line is Ax+By=C.
+If we have two points (x1,y1), (x2,y2). then
+A = y2 - y1
+B = x1 - x2
+C = A*x1 +B*y1
+
+If we have two lines:
+A1*x + B1*y = C1
+A2*x + B2*y = C2
+then
+det = A1*B2 - A2*B1
+if det == 0, lines are parallel
+else:
+  x = (B2*C1 - B1*C2)/det
+  y = (A1*C2 - A2*C1)/det
+
+A1*B2x + B1*B2*y = C1*B2
+A2*B1x + B1*B2*y = C2*B1
+x = (C1*B2-C2*B1)/(A1*B2-A2*B1)
+y = (A1*C2 - A2*C1) / (A1*B2 - A2*B1)
+
+check if the intersection is on the line.
+
+
+Find a circle from 3 points
+for each two points, Ax+By=C, a line perpendicular to this line is -Bx+Ay=D,
+and it must past the point ((x1+x2)/2, (y1+y2)/2).
+Then find the intersection of the two lines.
+
+Reflection
+reflecting a point across a line.
+Ax+By=C, add the point (x, y), find the line, find the intersection, then X' = Y - (X - Y)
+
+
+Rotation
+x' = xcos(theta) - ysin(theta)
+y' = xsin(theta) + ycos(theta)
+
+r = sqrt(x*x+y*y)
+x = rcos(a)
+y = rsin(a)
+x' = rcos(a+theta) = rcos(a)cos(theta) - rsin(a)sin(theta)
+y' = rsin(a+theta) = rsin(a)cos(theta) + rcos(a)sin(theta)
+
+convex hull
+a convex hull of a set of points is the smallest convex polygon contains every one of the points.
+Starting from the leftmost, highest point P. Then iterate through all left points. N is the previous
+point, X is current point, if PX * PN < 0, use X to replace N.
+After iterating through all points, use N as next P. at last, we will come back to start point.
+
+If there are 3 points on the same line, to select convex hull points can be more complex, because we
+have to choose the farest point or the nearest point.
+
+
+
+Line point distance
+Test if point is in a polygon, on a polygon, or out of a polygon. First, test if the point is on
+one of the lines of the polygon. If not, random a segment between the point and a random far point,
+see how many intersections of it and the lines of the polygon. If odd, the point is in the polygon,
+if event, the point is out of the polygon. Notice that, if the randomed segment overlaps a line
+of a polygon, we are in trouble, so try not to make it happen.
+
+TVTower
+Use a smallest circle to contain all the points. Either two points are on the circle, or three
+points are on the circle.
+
+Satellites
+3D vertexes. line point distance.
+How to show a point is 3d, cross product of vectors in 3d.
+
+
+3d vector
+A = xi + yj + zk
+A dot B = |A|*|B|cos(theta) = x1*x2 + y1*y2 + z1*z2
+angle between 3d vectors
+theta = arccos(P dot Q / (|P|*|Q|))
+
+cross product
+
+i = y1z2 - y2z1
+j = x2z1 - x1z2
+k = x1y2 - x2y1
+
+AB*BC = |AB|*|BC|sin(theta) = sqrt(i2+j2+k2)
+judge if the shortest distance from a point to a line segment is on one end of the segment,
+test if R2 + |R-S|2 <= S2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
