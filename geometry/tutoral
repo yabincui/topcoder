@@ -26,6 +26,11 @@ fr (int i = 1; i+1 < N; ++i) {
   area += cross(p[0]p[i], p[0]p[i+1])
 }
 return abs(area/2.0);
+(x1-x0)*(y2-y0) - (y1-y0)*(x2-x0) = x1y2 -x1y0 - x0y2 + x0y0 -y1x2 +y1x0 + x2y0 -x0y0
+                                  = x0y1 - x1y0 + x1y2 -x2y1 + x2y0 - x0y2
+(x2-x0)*(y3-y0) - (y2-y0)*(x3-x0) = x0y2 - x2y0 + x2y3 - x3y2 + x3y0 - x0y3
+add up = x0y1 - x1y0 + x1y2 - x2y1 + x2y3 - x3y2 + x3y0 - x0y3
+area = ((x0y1 - x1y0 + x1y2 - x2y1 + ... + xm-1ym - xmym-1 + xmy0 - x0ym) / 2.0
 
 Line-line intersection
 each line is Ax+By=C.
