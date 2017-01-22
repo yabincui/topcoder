@@ -1,4 +1,4 @@
-// srm 203, div II, level one
+// srm 203, div 2, easy
 #include <vector>
 #include <string>
 
