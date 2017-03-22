@@ -22,6 +22,10 @@ EqualTowers, SRM 442
 CardCosts, SRM 245
 RevengeOfTheSith, SRM 678
 
+Not so easy problems:
+BFS:
+	RevolvingDoors,	SRM 223
+
 Interesting problems:
 EllysCoprimesDiv2, SRM 577
 MuddyRoad2, SRM 555
